@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>calculator</title>
+    <link rel="stylesheet" href="bootstrap/bootstrap.min.css">
+    <link rel="stylesheet" href="calculator.css">
+</head>
+<body>
+    <div class="container" style="background-color:blanchedalmond; width: 330px;margin-top: 10px; padding-top: 20px;" >
+        <table>
+        <p>
+            <input type="text"  value="" id="display" disabled><br>
+            <input type="text" value="" id="show" disabled style="padding-top: 20px;"><br><br>
+            <input type="button" onclick=" functanh('tanh')" value="tanh"  style="background-color: rgb(235, 195, 95)">
+            <input type="button" onclick="funcsinh('sinh')" value="sinh"  style="background-color: rgb(235, 195, 95)">
+            <input type="button" onclick="funccosh('cosh')" value="cosh"  style="background-color: rgb(235, 195, 95)">
+            <input type="button" onclick="funclog('log')" value="log"  style="background-color: rgb(235, 195, 95)">
+            <input type="button" onclick="num('%')" value="%"  style="background-color: rgb(235, 195, 95)">
+            
+       
+        </p>
+        <p>
+                <input type="button" onclick="num(value)" id="sqw" value="&radic;" style="background-color: rgb(213, 210, 250)">
+                <input type="button" onclick="num('(')" value="(" style="background-color: rgb(213, 210, 250)">
+                <input type="button" onclick="num(')')" value=")" style="background-color: rgb(213, 210, 250)">
+                <input type="button" onclick="num('M+')" value="M+" style="background-color: rgb(213, 210, 250)">
+                <input type="button" onclick="num('^')" value="^" style="background-color: rgb(213, 210, 250)">
+              
+               
+            </p>
+            <p>
+                    <input type="button" onclick="funcsin()" value="sin" style="background-color: rgb(213, 210, 250)">
+                    <input type="button" onclick="funccos('cos')" value="cos" style="background-color: rgb(213, 210, 250)">
+                    <input type="button" onclick="functan('tan')" value="tan" style="background-color: rgb(213, 210, 250)">
+                    <input type="button" onclick="num('M-')" value="M-" style="background-color: rgb(213, 210, 250)">
+                    <input type="button" onclick="nu('del')" value="del" style="background-color: rgb(213, 210, 250)">
+                </p>
+                <p>
+                        <input type="button" onclick="num('9')" value="9" style="background-color: rgb(91, 89, 112)">
+                        <input type="button" onclick="num('8')" value="8" style="background-color: rgb(91, 89, 112)" >
+                        <input type="button" onclick="num('7')" value="7" style="background-color: rgb(91, 89, 112)">
+                        <input type="button" onclick="y('Ac')" value="Ac" style="background-color: cornflowerblue">
+                        <input type="button" onclick="num('+')" value="+" style="background-color: rgb(213, 210, 250)">
+                    </p>
+
+                    <p>
+                            <input type="button" onclick="num('6')" value="6" style="background-color: rgb(91, 89, 112)">
+                            <input type="button" onclick="num('5')" value="5" style="background-color: rgb(91, 89, 112)">
+                            <input type="button" onclick="num('4')" value="4" style="background-color: rgb(91, 89, 112)">
+                            <input type="button" onclick="num('-')" value="-" style="background-color: rgb(213, 210, 250)">
+                            <input type="button" onclick="num('*')" value="*" style="background-color: rgb(213, 210, 250)">
+                        </p>
+
+                        <p>
+                                <input type="button" onclick="num('3')"value="3" style="background-color: rgb(91, 89, 112)">
+                                <input type="button" onclick="num('2')" value="2" style="background-color: rgb(91, 89, 112)">
+                                <input type="button" onclick="num('1')" value="1" style="background-color: rgb(91, 89, 112)">
+                                <input type="button" onclick="num('/')" value="/" style="background-color: rgb(213, 210, 250)">
+                                <input type="button" onclick="power('ON')" value="ON" style="background-color: red" id="on">
+                            </p>
+
+             <p>
+                <input type="button" onclick="num('0')" value="0" style="background-color: burlywood">
+                <input type="button" onclick="num('.')" value="."  style="background-color: burlywood">
+                <input type="button" onclick="equals()" value="="  style="background-color: burlywood">
+                <input type="button" onclick="dd('abs')" value="abs"  style="background-color: burlywood">
+                
+
+               
+            </p>
+        </table>
+    
+    </div>
+    
+</body>
+<script>
+    
+var n = sqw.value;
+var z = [n];
+var x;
+
+    function power(){
+        if(on.value=="ON"){
+            on.value="OFF";
+            show.value="0";
+             }
+
+        else if(on.value=="OFF"){
+            on.value="ON";
+            show.value="";
+            display.value="";
+          
+             }
+       
+
+    }
+
+    let raiseToPower = null;
+    let val1 = null;
+    let val2 = null;
+    var tt = "";
+
+    function num(a){
+        if(!onscreen() && on.value == "OFF") {
+            tt = "";
+           if (a == "^") {
+                val1 = display.value;
+                raiseToPower = true;
+            }
+            display.value+=a;
+            if (a == z[0]) {
+                x = a
+            }
+            else{
+                tt += a;
+                console.log(tt);
+            }
+        }
+
+         
+    }
+    
+        
+    
+ function onscreen(){
+     if(on.value=="ON" && display.value==""){
+         show.value= "please press power button!!!"
+     }
+     else{
+         return false;
+     }
+ }
+
+  function y(){
+      display.value="";
+      show.value="";
+  }
+  function nu(){
+      display.value=display.value.slice(0,display.value.length -1);
+     
+  }
+  function funccos(){
+display.value="cos ("
+  }
+  function funcsin(){
+      display.value="sin ("
+    }
+    function functan(){
+      display.value="tan ("
+    }
+    function funclog(){
+      display.value="log ("
+    }
+    function functanh(){
+      display.value="tanh("
+    }
+    function funcsinh(){
+      display.value="sinh("
+    }
+    function funccosh(){
+      display.value="cosh("
+    }
+    
+    
+    function funcsqrt(){
+      display.value= "sqrt";
+        
+    }
+    function dd(){
+      display.value= "abs";
+        
+    }
+
+
+    function equals() {
+    
+      let trigOp =display.value.slice(0,4);
+      let val=display.value.slice(5);
+      if (raiseToPower == true) {
+          val2 = display.value.slice(val1.length + 1);
+          show.value = val1 ** val2;
+        //   console.log(val1, val2)
+        console.log(trigOp)
+      } else if (trigOp=='sin '){
+          show.value=Math.sin (val * Math.PI/180);
+          tt = "";
+      }
+      else if(trigOp=='cos '){
+        show.value=Math.cos(val *Math.PI/180);
+        tt = "";
+      } 
+      else if(x == z[0]){
+        show.value = eval(Math.sqrt(tt));
+        tt = "";
+      }
+      else if(trigOp=='tan '){
+        show.value=Math.tan(val *Math.PI/180);
+        tt = "";
+      } 
+    
+      else if(trigOp=='log '){
+
+        show.value=Math.log(val);
+        tt = "";
+      } 
+     
+      else if(trigOp=='tanh'){
+        show.value=Math.tanh(Math.round(val));
+        // tt = "";
+      }
+      else if(trigOp=='sinh'){
+        show.value=Math.sinh(Math.round(val));
+        tt = "";
+      }
+      else if(trigOp=='cosh'){
+        show.value=Math.cosh(Math.round(val ));
+        tt = "";
+      }
+      else if(trigOp=='abs'){
+        show.value=Math.abs;
+        tt = "";
+      }
+    
+      else{
+        show.value = eval(display.value);
+      }
+    }
+
+</script>
+</html>
